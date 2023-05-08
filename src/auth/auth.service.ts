@@ -30,10 +30,10 @@ export class AuthService {
 
       return {
         status: 'success',
+        message: 'You are registered now!',
         ...token,
       };
     } catch (error) {
-      console.log('Hello', error.code);
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
           throw new ForbiddenException('User already exist!');
@@ -56,7 +56,7 @@ export class AuthService {
     const token = await this.signToken(user.id, user.email);
     return {
       status: 'success',
-      message: 'You are Logged In',
+      message: 'You are Logged In!',
       ...token,
     };
   }
